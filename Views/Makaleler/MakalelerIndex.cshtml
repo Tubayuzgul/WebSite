@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MyWebSite.Models.Makaleler>
+
+@{
+    ViewBag.Title = "MakalelerIndex";
+}
+
+<h2>Makalele Listesi</h2>
+
+<p>
+    @Html.ActionLink("Yeni Makale Ekle", "MakalelerCreate")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MakaleBaslik)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MakaleIcerik)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kategoriler.KategoriBaslik)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MakaleBaslik)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MakaleIcerik)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kategoriler.KategoriBaslik)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "MakalelerEdit", new { id=item.MakaleId }) 
+           
+        </td>
+    </tr>
+}
+
+</table>

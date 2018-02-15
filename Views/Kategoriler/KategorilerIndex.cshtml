@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MyWebSite.Models.Kategoriler>
+
+@{
+    ViewBag.Title = "KategorilerIndex";
+}
+
+<h2>Kategorileriler</h2>
+
+<p>
+    @Html.ActionLink("Yeni", "KategorilerCreate")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.KategoriBaslik)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KategoriIcerik)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.KategoriBaslik)
+        </td>
+        <td>
+            @Html.Raw(item.KategoriIcerik)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "KategorilerEdit", new { id=item.KategorId }) |
+            @Html.ActionLink("Detay", "KategorilerDetails", new { id=item.KategorId }) |
+            @*@Html.ActionLink("Delete", "KategrilerDelete", new { id=item.KategorId })*@
+        </td>
+    </tr>
+}
+
+</table>

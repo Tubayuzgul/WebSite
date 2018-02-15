@@ -1,0 +1,58 @@
+﻿@model MyWebSite.Models.Makaleler
+
+@{
+    ViewBag.Title = "MakalelerEdit";
+}
+
+<h2>MakalelerEdit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Makaleler</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MakaleId)
+
+        @Html.Partial("MakalelerEditForm")
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-primary" value="Kaydet" />
+                <input type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" value="Sil" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Listeye Dön", "MakalelerIndex")
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Uyarı !!</h4>
+            </div>
+            <div class="modal-body">
+                Kaydı silmek istediğinizden emin misiniz ?
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm("MakalelerDelete", "Makaleler", new { id = Model.MakaleId }))
+                {
+                    @Html.AntiForgeryToken()
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Vazgeç</button>
+                    <button type="submit" class="btn btn-warning">Sil</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
