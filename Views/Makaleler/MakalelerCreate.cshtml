@@ -7,16 +7,23 @@
 <h2>MakalelerCreate</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("MakalelerCreate","Makaleler",
+                                    FormMethod.Post,
+                                    new { enctype = "multipart/form-data" }))
 {
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
         <h4>Makaleler</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.Partial("MakalelerEditForm")
-
+        
+            <input type="file" name="uploadfile" id="uploadfile" />
+           
+        
+        
+      
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />

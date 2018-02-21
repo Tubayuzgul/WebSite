@@ -11,9 +11,7 @@ namespace MyWebSite.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;
-
+    
     public partial class Kategoriler
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,9 +21,7 @@ namespace MyWebSite.Models
         }
     
         public int KategorId { get; set; }
-        [Required(ErrorMessage = "Baslk zorunlu")]
         public string KategoriBaslik { get; set; }
-        [AllowHtml]
         public string KategoriIcerik { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

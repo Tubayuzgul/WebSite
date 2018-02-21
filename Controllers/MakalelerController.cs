@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MyWebSite.Models;
+using System.IO;
+
 namespace MyWebSite.Controllers
 {
     public class MakalelerController : Controller
@@ -20,6 +22,7 @@ namespace MyWebSite.Controllers
         public ActionResult MakalelerIndex()
         {
             var makaleler = db.Makaleler.Include(m => m.Kategoriler);
+
             return View(makaleler);
         }
         #endregion
@@ -30,14 +33,27 @@ namespace MyWebSite.Controllers
         public ActionResult MakalelerCreate()
         {
             ViewBag.MakaleKategoriId = new SelectList(db.Kategoriler, "KategorId", "KategoriBaslik");
-            return View();
+            
+                return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult MakalelerCreate([Bind(Include = "MakaleId,MakaleBaslik,MakaleIcerik,MakaleKategoriId,Kategoriler")] Makaleler makalecreate)
+        public ActionResult MakalelerCreate([Bind(Include = "MakaleId,MakaleBaslik,MakaleIcerik,MakaleKategoriId,ResimUrl,Kategoriler")] Makaleler makalecreate,HttpPostedFileBase uploadfile)
         {
             try
             {
+                //resim yükleme
+                if (uploadfile.ContentLength>0 && uploadfile!=null)
+                {
+                    ViewBag.ResimHatsi = "";
+                    string resimGuid = Guid.NewGuid().ToString();
+                    string FilePath = Path.Combine(Server.MapPath("~/Content/Images"), resimGuid + Path.GetFileName(uploadfile.FileName));
+                    uploadfile.SaveAs(FilePath);
+                    makalecreate.ResimUrl = resimGuid + Path.GetFileName(uploadfile.FileName);
+                }
+
+
+
                 if (ModelState.IsValid)
                 {
                     if (makalecreate.MakaleBaslik == null)
@@ -51,7 +67,9 @@ namespace MyWebSite.Controllers
                     }
                     else
                     {
+                        
                         work.MakaleRepository.Insert(makalecreate);
+                       
                         work.Save();
                         return RedirectToAction("MakalelerIndex");
                     }
@@ -64,7 +82,7 @@ namespace MyWebSite.Controllers
             }
             ViewBag.MakaleKategoriId = new SelectList(db.Kategoriler, "KategorId", "KategoriBaslik", makalecreate.MakaleKategoriId);
 
-            return View(makalecreate);
+            return View();
         }
         #endregion
 

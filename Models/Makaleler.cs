@@ -25,6 +25,7 @@ namespace MyWebSite.Models
         public string MakaleBaslik { get; set; }
         public string MakaleIcerik { get; set; }
         public Nullable<int> MakaleKategoriId { get; set; }
+        public string ResimUrl { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Etiket> Etiket { get; set; }

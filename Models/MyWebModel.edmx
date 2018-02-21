@@ -28,6 +28,7 @@
           <Property Name="MakaleBaslik" Type="nvarchar" MaxLength="50" />
           <Property Name="MakaleIcerik" Type="nvarchar" MaxLength="50" />
           <Property Name="MakaleKategoriId" Type="int" />
+          <Property Name="ResimUrl" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Resimler">
           <Key>
@@ -150,6 +151,7 @@
           <Property Name="MakaleBaslik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MakaleIcerik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MakaleKategoriId" Type="Int32" />
+          <Property Name="ResimUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Etiket" Relationship="MyWebSiteModel.FK_Etiket_Makaleler" FromRole="Makaleler" ToRole="Etiket" />
           <NavigationProperty Name="Kategoriler" Relationship="MyWebSiteModel.FK_Makaleler_Kategoriler" FromRole="Makaleler" ToRole="Kategoriler" />
           <NavigationProperty Name="Resimler" Relationship="MyWebSiteModel.FK_Resimler_Makaleler" FromRole="Makaleler" ToRole="Resimler" />
@@ -209,7 +211,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -235,6 +237,7 @@
           <EntitySetMapping Name="Makaleler">
             <EntityTypeMapping TypeName="MyWebSiteModel.Makaleler">
               <MappingFragment StoreEntitySet="Makaleler">
+                <ScalarProperty Name="ResimUrl" ColumnName="ResimUrl" />
                 <ScalarProperty Name="MakaleKategoriId" ColumnName="MakaleKategoriId" />
                 <ScalarProperty Name="MakaleIcerik" ColumnName="MakaleIcerik" />
                 <ScalarProperty Name="MakaleBaslik" ColumnName="MakaleBaslik" />

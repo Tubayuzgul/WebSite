@@ -5,10 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e5452146bd524a86ab3d260f6dea1661" Name="Diagram1">
-        <EntityTypeShape EntityType="MyWebSiteModel.Etiket" Width="1.5" PointX="5.25" PointY="3.625" />
+        <EntityTypeShape EntityType="MyWebSiteModel.Etiket" Width="1.5" PointX="5.25" PointY="1" />
         <EntityTypeShape EntityType="MyWebSiteModel.Kategoriler" Width="1.5" PointX="0.75" PointY="2.25" />
         <EntityTypeShape EntityType="MyWebSiteModel.Makaleler" Width="1.5" PointX="3" PointY="1.875" />
-        <EntityTypeShape EntityType="MyWebSiteModel.Resimler" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="MyWebSiteModel.Resimler" Width="1.5" PointX="5.25" PointY="3.375" />
         <EntityTypeShape EntityType="MyWebSiteModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="5.75" />
         <AssociationConnector Association="MyWebSiteModel.FK_Etiket_Makaleler" />
         <AssociationConnector Association="MyWebSiteModel.FK_Makaleler_Kategoriler" />
